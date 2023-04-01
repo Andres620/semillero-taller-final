@@ -1,11 +1,11 @@
-package com.semillero.repository.contracts.dbModels.core;
+package com.semillero.application.contracts.DTO.core;
 
 import java.sql.Time;
 import java.util.Date;
 
-import com.semillero.repository.contracts.dbModels.parameters.TransactionType;
+import com.semillero.application.contracts.DTO.parameters.TransactionType;
 
-public class TransactionDbModel {
+public class TransactionDTO {
     private Date date;
     private Time time;
     private TransactionType transactionType;
@@ -13,7 +13,7 @@ public class TransactionDbModel {
     private String accountId;
     private String destinationAccountType;
 
-    public TransactionDbModel(Date date, Time time, TransactionType transactionType, double amount, String accountId, String destinationAccountType) {
+    public TransactionDTO(Date date, Time time, TransactionType transactionType, double amount, String accountId, String destinationAccountType) {
         this.date = date;
         this.time = time;
         this.transactionType = transactionType;

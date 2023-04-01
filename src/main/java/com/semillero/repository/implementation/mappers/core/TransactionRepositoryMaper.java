@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.semillero.repository.contracts.dbModels.core.TransactionDbModel;
+import com.semillero.repository.contracts.dbModels.parameters.TransactionType;
 import com.semillero.repository.implementation.dataModel.core.Transaction;
 import com.semillero.repository.implementation.mappers.DbModelMapperBase;
 
@@ -14,7 +15,7 @@ public class TransactionRepositoryMaper extends DbModelMapperBase<TransactionDbM
         return new TransactionDbModel(
             input.getDate(),
             input.getTime(),
-            input.getTransactionType(),
+            TransactionType.valueOf(input.getTransactionType()),
             input.getAmount(),
             input.getAccountId(),
             input.getDestinationAccountType()
@@ -26,7 +27,7 @@ public class TransactionRepositoryMaper extends DbModelMapperBase<TransactionDbM
         return new Transaction(
             input.getDate(),
             input.getTime(),
-            input.getTransactionType(),
+            input.getTransactionType().toString(),
             input.getAmount(),
             input.getAccountId(),
             input.getDestinationAccountType()

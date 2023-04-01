@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.semillero.repository.contracts.dbModels.core.BankAccountDbModel;
 import com.semillero.repository.contracts.dbModels.core.SavingsAccountDbModel;
+import com.semillero.repository.contracts.dbModels.parameters.AccountType;
 import com.semillero.repository.implementation.dataModel.core.Account;
 import com.semillero.repository.implementation.mappers.DbModelMapperBase;
 
@@ -15,7 +16,7 @@ public class SavingsAccountRepositoryMapper extends DbModelMapperBase<BankAccoun
         return new SavingsAccountDbModel(
             input.getAccountNumber(),
             input.getBalance(),
-            input.getType(),
+            AccountType.valueOf(input.getType()),
             input.getOwner()
         );
     }
@@ -25,7 +26,7 @@ public class SavingsAccountRepositoryMapper extends DbModelMapperBase<BankAccoun
         return new Account(
             input.getAccountNumber(),
             input.getBalance(),
-            input.getType(),
+            input.getType().toString(),
             input.getOwner()
         );
     }

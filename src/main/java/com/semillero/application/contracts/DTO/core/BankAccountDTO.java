@@ -1,14 +1,14 @@
-package com.semillero.repository.contracts.dbModels.core;
+package com.semillero.application.contracts.DTO.core;
 
-import com.semillero.repository.contracts.dbModels.parameters.AccountType;
+import com.semillero.application.contracts.DTO.parameters.AccountType;
 
-public abstract class BankAccountDbModel{ 
+public class BankAccountDTO {
     private String accountNumber;
 	private float balance;
 	private String owner;
     private AccountType type;
 
-    public BankAccountDbModel(String accountNumber, float balance, AccountType type, String owner) {
+    public BankAccountDTO(String accountNumber, float balance, AccountType type, String owner) {
         this.accountNumber = accountNumber;
         this.balance = balance;
         this.type = type;

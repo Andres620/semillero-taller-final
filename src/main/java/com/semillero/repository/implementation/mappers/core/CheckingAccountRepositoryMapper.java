@@ -5,17 +5,18 @@ import java.util.List;
 
 import com.semillero.repository.contracts.dbModels.core.BankAccountDbModel;
 import com.semillero.repository.contracts.dbModels.core.CheckingAccountDbModel;
+import com.semillero.repository.contracts.dbModels.parameters.AccountType;
 import com.semillero.repository.implementation.dataModel.core.Account;
 import com.semillero.repository.implementation.mappers.DbModelMapperBase;
 
-public class CheckingAccount  extends DbModelMapperBase<BankAccountDbModel, Account>{
+public class CheckingAccountRepositoryMapper  extends DbModelMapperBase<BankAccountDbModel, Account>{
 
     @Override
     public BankAccountDbModel DatabaseToDbModelMapper(Account input) {
         return new CheckingAccountDbModel(
             input.getAccountNumber(),
             input.getBalance(),
-            input.getType(),
+            AccountType.valueOf(input.getType().toString()),
             input.getOwner()
         );
     }
@@ -25,7 +26,7 @@ public class CheckingAccount  extends DbModelMapperBase<BankAccountDbModel, Acco
         return new Account(
             input.getAccountNumber(),
             input.getBalance(),
-            input.getType(),
+            input.getType().toString(),
             input.getOwner()
         );
     }
