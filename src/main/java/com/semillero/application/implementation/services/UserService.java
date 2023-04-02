@@ -1,5 +1,7 @@
 package com.semillero.application.implementation.services;
 
+import java.util.List;
+
 import com.semillero.application.contracts.DTO.core.UserDTO;
 import com.semillero.application.contracts.Iservices.IUserService;
 import com.semillero.application.implementation.mappers.core.UserApplicationMapper;
@@ -25,9 +27,13 @@ public class UserService implements IUserService{
     }
 
     @Override
-    public UserDTO findUser(String identificationCard) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'findUser'");
+    public UserDTO findUser(String identificationCard) throws Exception {
+        UserDbModel userDbModel = (UserDbModel) userRepository.search(identificationCard);
+        if (userDbModel == null) {
+            throw new Exception("The user was not found");
+        }
+        UserDTO userDTO = mapper.DbModelToDTOMapper(userDbModel);
+        return userDTO;
     }
 
     @Override
@@ -38,8 +44,14 @@ public class UserService implements IUserService{
 
     @Override
     public void deleteUser(String identificationCard) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'deleteUser'");
+        userRepository.delete(identificationCard);
+    }
+
+
+    @Override
+    public List<UserDTO> listUsers() {
+        List<UserDTO> users =  mapper.DbModelToDTOMapper((List<UserDbModel>) userRepository.list());
+        return users;
     }
     
 }

@@ -5,6 +5,9 @@ public class UserDTO {
     private String surname;
     private String identificationCard;
 
+    public UserDTO() {
+    }
+
     public UserDTO(String name, String surname, String identificationCard) {
         this.name = name;
         this.surname = surname;

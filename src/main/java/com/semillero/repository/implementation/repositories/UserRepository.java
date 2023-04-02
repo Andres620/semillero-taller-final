@@ -3,7 +3,9 @@ package com.semillero.repository.implementation.repositories;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.semillero.repository.contracts.Irepositories.IUserRepository;
@@ -19,7 +21,7 @@ public class UserRepository implements IUserRepository{
     public UserRepository() {
         try {
             DriverManager.registerDriver(new org.sqlite.JDBC());
-            connectionString = "jdbc:sqlite:pruebas.db";
+            connectionString = "jdbc:sqlite:banco.db";
             mapper = new UserRepositoryMapper();
         } catch (SQLException e) {
             System.err.println("Error connecting to database: " + e);
@@ -31,9 +33,9 @@ public class UserRepository implements IUserRepository{
         try (Connection connection = DriverManager.getConnection(connectionString)) {
             mapper = new UserRepositoryMapper();
             User user = mapper.DbModelToDatabaseMapper(object);
-            String sqlQuery = "INSERT INTO usuarios (nombre, apellido, cedula) " 
+            String sqlQuery = "INSERT INTO USUARIOS (nombre, apellido, cedula) " 
                 + "VALUES (?, ?, ?)";
-            
+
             PreparedStatement statement  = connection.prepareStatement(sqlQuery);
             statement.setString(1, user.getName());
             statement.setString(2, user.getSurname());
@@ -44,14 +46,20 @@ public class UserRepository implements IUserRepository{
             System.err.println("Connection error: " + e);
         } catch (Exception e) {
             System.err.println("Error " + e.getMessage());
-        }
-        
+        }      
     }
 
     @Override
     public void delete(String identifier) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'delete'");
+        try (Connection connection = DriverManager.getConnection(connectionString)) {
+            String sqlQuery = "DELETE FROM usuarios WHERE cedula = ?;";
+            PreparedStatement statement = connection.prepareStatement(sqlQuery);
+
+            statement.setString(1, identifier);
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println("Error deleting account:  " + e.getMessage());
+        }
     }
 
     @Override
@@ -62,14 +70,54 @@ public class UserRepository implements IUserRepository{
 
     @Override
     public Object search(String identifier) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'search'");
+        try (Connection connection = DriverManager.getConnection(connectionString)) {
+            String sqlQuery = "SELECT * FROM usuarios WHERE cedula = ?";
+
+            PreparedStatement statement = connection.prepareStatement(sqlQuery);
+            statement.setString(1, identifier);
+            ResultSet response = statement.executeQuery();
+            if (response != null && response.next()) {
+                User user = null;
+                String name =  response.getString("nombre"); 
+                String surname = response.getString("apellido"); 
+                String identificationCard = response.getString("cedula"); 
+                user = new User(name, surname, identificationCard);
+                UserDbModel userDbModel = mapper.DatabaseToDbModelMapper(user);
+                return userDbModel;
+            }
+
+        } catch (SQLException e) {
+            System.err.println("Error de conexión: " + e);
+        }
+        return null;
     }
 
     @Override
     public List<?> list() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'list'");
+        List<User> users = new ArrayList<User>();
+
+        try(Connection connection = DriverManager.getConnection(connectionString)){
+            String sqlQuery = "SELECT * FROM usuarios";
+            PreparedStatement statement = connection.prepareStatement(sqlQuery);
+            ResultSet response = statement.executeQuery();
+            
+            if(response != null){
+                while(response.next()){
+                    User user = null;
+                    String name =  response.getString("nombre"); 
+                    String surname = response.getString("apellido"); 
+                    String identificationCard = response.getString("cedula"); 
+                    user = new User(name, surname, identificationCard);
+                    users.add(user);
+                }
+                List<UserDbModel> usersDbModel = mapper.DatabaseToDbModelMapper(users);
+                return usersDbModel;
+            }
+
+        }catch (SQLException e) {
+            System.err.println("Error listing users: " + e);
+        }
+        return null;
     }
 
     @Override
