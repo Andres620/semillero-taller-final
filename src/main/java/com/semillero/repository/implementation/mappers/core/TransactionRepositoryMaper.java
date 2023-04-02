@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.semillero.repository.contracts.dbModels.core.TransactionDbModel;
-import com.semillero.repository.contracts.dbModels.parameters.TransactionType;
+import com.semillero.application.contracts.DTO.parameters.TransactionType;
 import com.semillero.repository.implementation.dataModel.core.Transaction;
 import com.semillero.repository.implementation.mappers.DbModelMapperBase;
 

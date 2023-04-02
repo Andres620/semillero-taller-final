@@ -3,7 +3,7 @@ package com.semillero.repository.contracts.dbModels.core;
 import java.sql.Time;
 import java.util.Date;
 
-import com.semillero.repository.contracts.dbModels.parameters.TransactionType;
+import com.semillero.application.contracts.DTO.parameters.TransactionType;
 
 public class TransactionDbModel {
     private Date date;

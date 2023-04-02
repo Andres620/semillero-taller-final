@@ -1,6 +1,6 @@
 package com.semillero.repository.contracts.dbModels.core;
 
-import com.semillero.repository.contracts.dbModels.parameters.AccountType;
+import com.semillero.application.contracts.DTO.parameters.AccountType;
 
 public class SavingsAccountDbModel extends BankAccountDbModel{
 

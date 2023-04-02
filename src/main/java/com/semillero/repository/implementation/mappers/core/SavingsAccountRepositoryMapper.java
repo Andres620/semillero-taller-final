@@ -5,7 +5,7 @@ import java.util.List;
 
 import com.semillero.repository.contracts.dbModels.core.BankAccountDbModel;
 import com.semillero.repository.contracts.dbModels.core.SavingsAccountDbModel;
-import com.semillero.repository.contracts.dbModels.parameters.AccountType;
+import com.semillero.application.contracts.DTO.parameters.AccountType;
 import com.semillero.repository.implementation.dataModel.core.Account;
 import com.semillero.repository.implementation.mappers.DbModelMapperBase;
 
