@@ -11,38 +11,42 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.semillero.application.contracts.DTO.core.UserDTO;
-import com.semillero.application.contracts.Iservices.IUserService;
-import com.semillero.application.implementation.services.UserService;
+import com.semillero.application.contracts.DTO.core.BankAccountDTO;
+import com.semillero.application.contracts.DTO.core.CheckingAccountDTO;
+import com.semillero.application.contracts.DTO.core.SavingsAccountDTO;
+import com.semillero.application.contracts.DTO.parameters.AccountType;
+import com.semillero.application.contracts.Iservices.IAccountService;
+import com.semillero.application.implementation.services.AccountService;
 
-
-public class UserController extends HttpServlet{
-    private IUserService userService;
+public class AccountController extends HttpServlet{
+    private IAccountService accountService;
     private ObjectMapper mapper;
-    //private UserControllerMapper mapper;
 
-    public UserController() {
-        userService = new UserService();
+    public AccountController() {
+        accountService = new AccountService();
         mapper = new ObjectMapper();
     }
-
+    
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
         String path = request.getPathInfo();
         if (path == null) {
-            List<UserDTO> users = (List<UserDTO>) userService.listUsers();
-            String json = mapper.writeValueAsString(users);
+            
+            response.setStatus(404);
+            Map<String, String> error = new HashMap<>();
+            error.put("error", "Resource not found");
+            String json = mapper.writeValueAsString(error);
             response.setContentType("application/json");
             response.getWriter().println(json);
         } else {
             switch (path) {
                 case "/search":
-                    String identificationCard = request.getParameter("cedula");
+                    int userId = Integer.parseInt(request.getParameter("id_usuario"));
                     try {
-                        UserDTO user = userService.findUser(identificationCard);
-                        String json = mapper.writeValueAsString(user);
+                        List<BankAccountDTO> account = (List<BankAccountDTO>) accountService.listAccountsByUserId(userId);
+                        String json = mapper.writeValueAsString(account);
                         response.setContentType("application/json");
                         response.getWriter().println(json);
                     } catch (Exception e) {
@@ -74,13 +78,25 @@ public class UserController extends HttpServlet{
         String content = request.getContentType();
 
         if (content != null && content.equals("application/json")) {
-            UserDTO user = mapper.readValue(request.getInputStream(), UserDTO.class);
-            System.out.println(user);
+            Map <String, Object> accountMap = mapper.readValue(request.getInputStream(), HashMap.class);
+            System.out.println(accountMap);
+            BankAccountDTO account = null ;
+            String accountNuumber = accountMap.get("numberAccount").toString();
+            Float balance = Float.parseFloat(accountMap.get("amount").toString());
+            int owner = Integer.parseInt(accountMap.get("userId").toString());
+            
+            if(accountMap.get("accountType").equals(AccountType.CHECKING.toString())){
+                AccountType type = AccountType.CHECKING;
+                account = new CheckingAccountDTO(accountNuumber, balance,type , owner);
+            }else{
+                AccountType type = AccountType.SAVINGS;
+                account = new SavingsAccountDTO(accountNuumber, balance,type , owner);
+            }
             try {
-                userService.saveUser(user);
+                accountService.saveAccount(account);
                 response.setStatus(HttpServletResponse.SC_CREATED);
                 Map<String, String> responseMap  = new HashMap<>();
-                responseMap .put("message", "User saved successfully");
+                responseMap .put("message", "Account saved successfully");
                 String json = mapper.writeValueAsString(responseMap );
                 response.setContentType("application/json");
                 response.getWriter().println(json);
@@ -103,27 +119,4 @@ public class UserController extends HttpServlet{
             response.getWriter().println(json);
         }
     }
-
-    @Override
-    protected void doDelete(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        String identificationCard = request.getParameter("cedula");
-        try {
-            userService.deleteUser(identificationCard);
-            response.setStatus(HttpServletResponse.SC_OK);
-            Map<String, String> responseMap = new HashMap<>();
-            responseMap.put("message", "Person deleted successfully");
-            String json = mapper.writeValueAsString(responseMap);
-            response.setContentType("application/json");
-            response.getWriter().println(json);
-        } catch (Exception e) {
-            response.setStatus(HttpServletResponse.SC_CONFLICT);
-            Map<String, String> error = new HashMap<>();
-            error.put("error", e.getMessage());
-            String json = mapper.writeValueAsString(error);
-            response.setContentType("application/json");
-            response.getWriter().println(json);
-        }
-    }
-
 }

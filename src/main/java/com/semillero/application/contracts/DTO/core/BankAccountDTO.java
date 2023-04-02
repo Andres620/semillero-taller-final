@@ -11,7 +11,8 @@ public abstract class BankAccountDTO {
     private int withdrawalCount;
 
     
-  
+    public BankAccountDTO() {
+    }
 
     public BankAccountDTO(int id, String accountNumber, float balance, AccountType type, int owner,
             int withdrawalCount) {

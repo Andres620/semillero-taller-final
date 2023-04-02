@@ -12,7 +12,7 @@ import com.semillero.repository.implementation.repositories.UserRepository;
 public class UserService implements IUserService{
 
     private IUserRepository userRepository;
-    UserApplicationMapper mapper;
+    private UserApplicationMapper mapper;
 
     public UserService() {
         userRepository = new UserRepository();

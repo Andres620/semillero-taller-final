@@ -7,7 +7,7 @@ public class CheckingAccountDTO extends BankAccountDTO{
     public static final int MAX_NUM_SAVINGS_TRANSFERS = 2;
     public static final double TRANSFER_FEE_PERCENTAGE = 0.02;
     private int savingsTransfersCount;
-    
+
     public CheckingAccountDTO(int id, String accountNumber, float balance, AccountType type, int owner,
             int withdrawalCount, int savingsTransfersCount) {
         super(id, accountNumber, balance, type, owner, withdrawalCount);

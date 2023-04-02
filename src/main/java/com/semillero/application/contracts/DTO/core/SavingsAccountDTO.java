@@ -1,5 +1,6 @@
 package com.semillero.application.contracts.DTO.core;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.semillero.application.contracts.DTO.parameters.AccountType;
 
 public class SavingsAccountDTO extends BankAccountDTO{
@@ -11,10 +12,17 @@ public class SavingsAccountDTO extends BankAccountDTO{
     public static final double CURRENT_ACCOUNT_TRANSFER_FEE_PERCENTAGE = 0.015;
     private int numDeposits;
 
+
     
+    public SavingsAccountDTO(int numDeposits) {
+        this.numDeposits = numDeposits;
+    }
+
+    @JsonIgnoreProperties(value = {"numDeposits", "withdrawalCount"})
     public SavingsAccountDTO(int id, String accountNumber, float balance, AccountType type, int owner,
-            int withdrawalCount) {
+            int withdrawalCount, int numDeposits) {
         super(id, accountNumber, balance, type, owner, withdrawalCount);
+        this.numDeposits = numDeposits;
     }
 
     public SavingsAccountDTO(int id, String accountNumber, float balance, AccountType type, int owner) {
