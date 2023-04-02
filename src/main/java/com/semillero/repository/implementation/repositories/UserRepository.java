@@ -31,7 +31,6 @@ public class UserRepository implements IUserRepository{
     @Override
     public void save(UserDbModel object) {
         try (Connection connection = DriverManager.getConnection(connectionString)) {
-            mapper = new UserRepositoryMapper();
             User user = mapper.DbModelToDatabaseMapper(object);
             String sqlQuery = "INSERT INTO USUARIOS (nombre, apellido, cedula) " 
                 + "VALUES (?, ?, ?)";

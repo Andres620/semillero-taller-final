@@ -12,6 +12,9 @@ public class TransactionDTO {
     private int accountId;
     private AccountType destinationAccountType;
 
+    public TransactionDTO() {
+    }
+
     public TransactionDTO(int id, String date, String time, TransactionType transactionType, double amount,
             int accountId, AccountType destinationAccountType) {
         this.id = id;

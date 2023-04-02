@@ -44,8 +44,8 @@ public class AccountService implements IAccountService{
     
 
     @Override
-    public BankAccountDTO findAccount(String accountNumber) throws Exception {
-        BankAccountDbModel accountDbModel = (BankAccountDbModel) accountRepository.search(accountNumber);
+    public BankAccountDTO findAccount(int accountId) throws Exception {
+        BankAccountDbModel accountDbModel = (BankAccountDbModel) accountRepository.search(accountId);
         if (accountDbModel == null) {
             throw new Exception("The user was not found");
         }

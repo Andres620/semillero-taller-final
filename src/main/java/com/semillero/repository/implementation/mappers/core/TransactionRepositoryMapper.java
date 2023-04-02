@@ -9,7 +9,7 @@ import com.semillero.application.contracts.DTO.parameters.TransactionType;
 import com.semillero.repository.implementation.dataModel.core.Transaction;
 import com.semillero.repository.implementation.mappers.DbModelMapperBase;
 
-public class TransactionRepositoryMaper extends DbModelMapperBase<TransactionDbModel, Transaction>{
+public class TransactionRepositoryMapper extends DbModelMapperBase<TransactionDbModel, Transaction>{
 
     @Override
     public TransactionDbModel DatabaseToDbModelMapper(Transaction input) {

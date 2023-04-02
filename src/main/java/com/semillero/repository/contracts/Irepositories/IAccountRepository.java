@@ -11,7 +11,7 @@ public interface IAccountRepository {
 
     public void update(Object object);
 
-    public Object search(String identifier);
+    public Object search(int identifier);
 
     public List<?> listByUserId(int userId);
 

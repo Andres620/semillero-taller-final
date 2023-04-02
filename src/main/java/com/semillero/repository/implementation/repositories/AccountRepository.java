@@ -76,12 +76,12 @@ public class AccountRepository implements IAccountRepository{
     }
 
     @Override
-    public Object search(String identifier) {
+    public Object search(int identifier) {
         try (Connection connection = DriverManager.getConnection(connectionString)) {
-            String sqlQuery = "SELECT * FROM cuentas WHERE numero_cuenta = ?";
+            String sqlQuery = "SELECT * FROM cuentas WHERE id = ?";
 
             PreparedStatement statement = connection.prepareStatement(sqlQuery);
-            statement.setString(1, identifier);
+            statement.setInt(1, identifier);
             ResultSet response = statement.executeQuery();
             if (response != null && response.next()) {
                 Account account = null;
