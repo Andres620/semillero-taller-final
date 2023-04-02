@@ -14,6 +14,7 @@ public class CheckingAccountApplicationMapper extends DTOMapperBase<BankAccountD
     @Override
     public BankAccountDTO DbModelToDTOMapper(BankAccountDbModel input) {
         return new CheckingAccountDTO(
+            input.getId(),
             input.getAccountNumber(),
             input.getBalance(),
             input.getType(),
@@ -24,6 +25,7 @@ public class CheckingAccountApplicationMapper extends DTOMapperBase<BankAccountD
     @Override
     public BankAccountDbModel DTOToDbModelMapper(BankAccountDTO input) {
         return new CheckingAccountDbModel(
+            input.getId(),
             input.getAccountNumber(),
             input.getBalance(),
             input.getType(),

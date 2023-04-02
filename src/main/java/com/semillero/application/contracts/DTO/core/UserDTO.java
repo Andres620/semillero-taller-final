@@ -1,9 +1,17 @@
 package com.semillero.application.contracts.DTO.core;
 
 public class UserDTO {
+    private int id;
     private String name;
     private String surname;
     private String identificationCard;
+
+    public UserDTO(int id, String name, String surname, String identificationCard) {
+        this.id = id;
+        this.name = name;
+        this.surname = surname;
+        this.identificationCard = identificationCard;
+    }
 
     public UserDTO() {
     }
@@ -36,6 +44,14 @@ public class UserDTO {
 
     public void setIdentificationCard(String identificationCard) {
         this.identificationCard = identificationCard;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
     
 }

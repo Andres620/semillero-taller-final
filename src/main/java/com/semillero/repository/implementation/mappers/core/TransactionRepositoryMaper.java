@@ -14,6 +14,7 @@ public class TransactionRepositoryMaper extends DbModelMapperBase<TransactionDbM
     @Override
     public TransactionDbModel DatabaseToDbModelMapper(Transaction input) {
         return new TransactionDbModel(
+            input.getId(), 
             input.getDate(),
             input.getTime(),
             TransactionType.valueOf(input.getTransactionType()),
@@ -26,6 +27,7 @@ public class TransactionRepositoryMaper extends DbModelMapperBase<TransactionDbM
     @Override
     public Transaction DbModelToDatabaseMapper(TransactionDbModel input) {
         return new Transaction(
+            input.getId(), 
             input.getDate(),
             input.getTime(),
             input.getTransactionType().toString(),

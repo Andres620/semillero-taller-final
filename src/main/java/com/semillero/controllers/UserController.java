@@ -33,7 +33,7 @@ public class UserController extends HttpServlet{
         String path = request.getPathInfo();
         if (path == null) {
             List<UserDTO> users = (List<UserDTO>) userService.listUsers();
-            String json = mapper.writeValueAsString(users);
+            String json = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(users);
             response.setContentType("application/json");
             response.getWriter().println(json);
         } else {

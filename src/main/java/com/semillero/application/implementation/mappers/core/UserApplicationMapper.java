@@ -11,12 +11,12 @@ public class UserApplicationMapper extends DTOMapperBase<UserDTO, UserDbModel>{
 
     @Override
     public UserDTO DbModelToDTOMapper(UserDbModel input) {
-        return new UserDTO(input.getName(), input.getSurname(), input.getIdentificationCard());
+        return new UserDTO(input.getId(), input.getName(), input.getSurname(), input.getIdentificationCard());
     }
 
     @Override
     public UserDbModel DTOToDbModelMapper(UserDTO input) {
-        return new UserDbModel(input.getName(), input.getSurname(), input.getIdentificationCard());
+        return new UserDbModel(input.getId(), input.getName(), input.getSurname(), input.getIdentificationCard());
     }
 
     @Override

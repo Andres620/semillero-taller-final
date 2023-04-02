@@ -78,10 +78,11 @@ public class UserRepository implements IUserRepository{
             ResultSet response = statement.executeQuery();
             if (response != null && response.next()) {
                 User user = null;
+                int id =  response.getInt("id"); 
                 String name =  response.getString("nombre"); 
                 String surname = response.getString("apellido"); 
                 String identificationCard = response.getString("cedula"); 
-                user = new User(name, surname, identificationCard);
+                user = new User(id, name, surname, identificationCard);
                 UserDbModel userDbModel = mapper.DatabaseToDbModelMapper(user);
                 return userDbModel;
             }
@@ -104,10 +105,11 @@ public class UserRepository implements IUserRepository{
             if(response != null){
                 while(response.next()){
                     User user = null;
+                    int id =  response.getInt("id"); 
                     String name =  response.getString("nombre"); 
                     String surname = response.getString("apellido"); 
                     String identificationCard = response.getString("cedula"); 
-                    user = new User(name, surname, identificationCard);
+                    user = new User(id, name, surname, identificationCard);
                     users.add(user);
                 }
                 List<UserDbModel> usersDbModel = mapper.DatabaseToDbModelMapper(users);
