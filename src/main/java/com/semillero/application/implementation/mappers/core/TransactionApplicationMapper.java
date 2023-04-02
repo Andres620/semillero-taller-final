@@ -12,6 +12,7 @@ public class TransactionApplicationMapper extends DTOMapperBase<TransactionDTO, 
     @Override
     public TransactionDTO DbModelToDTOMapper(TransactionDbModel input) {
         return new TransactionDTO(
+            input.getId(),
             input.getDate(),
             input.getTime(),
             input.getTransactionType(),
@@ -24,6 +25,7 @@ public class TransactionApplicationMapper extends DTOMapperBase<TransactionDTO, 
     @Override
     public TransactionDbModel DTOToDbModelMapper(TransactionDTO input) {
         return new TransactionDbModel(
+            input.getId(),
             input.getDate(),
             input.getTime(),
             input.getTransactionType(),

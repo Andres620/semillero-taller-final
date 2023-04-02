@@ -1,9 +1,17 @@
 package com.semillero.repository.contracts.dbModels.core;
 
 public class UserDbModel {
+    private int id;
     private String name;
     private String surname;
     private String identificationCard;
+
+    public UserDbModel(int id, String name, String surname, String identificationCard) {
+        this.id = id;
+        this.name = name;
+        this.surname = surname;
+        this.identificationCard = identificationCard;
+    }
 
     public UserDbModel(String name, String surname, String identificationCard) {
         this.name = name;
@@ -33,6 +41,14 @@ public class UserDbModel {
 
     public void setIdentificationCard(String identificationCard) {
         this.identificationCard = identificationCard;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
     
 }

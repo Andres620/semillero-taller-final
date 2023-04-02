@@ -1,12 +1,24 @@
 package com.semillero.repository.implementation.dataModel.core;
 
 public class Transaction {
+    private int id;
     private String date;
     private String time;
     private String transactionType;
     private double amount;
     private int accountId;
     private String destinationAccountType;
+
+    public Transaction(int id, String date, String time, String transactionType, double amount, int accountId,
+            String destinationAccountType) {
+        this.id = id;
+        this.date = date;
+        this.time = time;
+        this.transactionType = transactionType;
+        this.amount = amount;
+        this.accountId = accountId;
+        this.destinationAccountType = destinationAccountType;
+    }
 
     public Transaction(String date, String time, String transactionType, double amount, int accountId, String destinationAccountType) {
         this.date = date;
@@ -63,5 +75,13 @@ public class Transaction {
 
     public void setDestinationAccountType(String destinationAccountType) {
         this.destinationAccountType = destinationAccountType;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }

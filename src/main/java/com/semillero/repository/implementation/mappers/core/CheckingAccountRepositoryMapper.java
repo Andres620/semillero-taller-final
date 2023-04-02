@@ -14,6 +14,7 @@ public class CheckingAccountRepositoryMapper  extends DbModelMapperBase<BankAcco
     @Override
     public BankAccountDbModel DatabaseToDbModelMapper(Account input) {
         return new CheckingAccountDbModel(
+            input.getId(), 
             input.getAccountNumber(),
             input.getBalance(),
             AccountType.valueOf(input.getType().toString()),
@@ -24,6 +25,7 @@ public class CheckingAccountRepositoryMapper  extends DbModelMapperBase<BankAcco
     @Override
     public Account DbModelToDatabaseMapper(BankAccountDbModel input) {
         return new Account(
+            input.getId(), 
             input.getAccountNumber(),
             input.getBalance(),
             input.getType().toString(),

@@ -3,10 +3,21 @@ package com.semillero.repository.contracts.dbModels.core;
 import com.semillero.application.contracts.DTO.parameters.AccountType;
 
 public abstract class BankAccountDbModel{ 
+    private int id;
     private String accountNumber;
 	private float balance;
-	private int owner;
     private AccountType type;
+	private int owner;
+
+  
+
+    public BankAccountDbModel(int id, String accountNumber, float balance, AccountType type, int owner) {
+        this.id = id;
+        this.accountNumber = accountNumber;
+        this.balance = balance;
+        this.type = type;
+        this.owner = owner;
+    }
 
     public BankAccountDbModel(String accountNumber, float balance, AccountType type, int owner) {
         this.accountNumber = accountNumber;
@@ -45,5 +56,13 @@ public abstract class BankAccountDbModel{
     
     public void setType(AccountType type) {
         this.type = type;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }

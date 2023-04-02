@@ -11,12 +11,12 @@ public class UserRepositoryMapper extends DbModelMapperBase<UserDbModel, User>{
 
     @Override
     public UserDbModel DatabaseToDbModelMapper(User input) {
-        return new UserDbModel(input.getName(), input.getSurname(), input.getIdentificationCard());
+        return new UserDbModel(input.getId(), input.getName(), input.getSurname(), input.getIdentificationCard());
     }
-
+    
     @Override
     public User DbModelToDatabaseMapper(UserDbModel input) {
-        return new User(input.getName(), input.getSurname(), input.getIdentificationCard());
+        return new User(input.getId(), input.getName(), input.getSurname(), input.getIdentificationCard());
     }
 
     @Override

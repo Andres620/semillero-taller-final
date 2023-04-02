@@ -14,6 +14,7 @@ public class SavingsAccountRepositoryMapper extends DbModelMapperBase<BankAccoun
     @Override
     public BankAccountDbModel DatabaseToDbModelMapper(Account input) {
         return new SavingsAccountDbModel(
+            input.getId(), 
             input.getAccountNumber(),
             input.getBalance(),
             AccountType.valueOf(input.getType()),
@@ -24,6 +25,7 @@ public class SavingsAccountRepositoryMapper extends DbModelMapperBase<BankAccoun
     @Override
     public Account DbModelToDatabaseMapper(BankAccountDbModel input) {
         return new Account(
+            input.getId(), 
             input.getAccountNumber(),
             input.getBalance(),
             input.getType().toString(),

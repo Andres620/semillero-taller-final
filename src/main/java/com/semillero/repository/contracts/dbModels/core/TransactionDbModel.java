@@ -4,12 +4,24 @@ import com.semillero.application.contracts.DTO.parameters.AccountType;
 import com.semillero.application.contracts.DTO.parameters.TransactionType;
 
 public class TransactionDbModel {
+    private int id;
     private String date;
     private String time;
     private TransactionType transactionType;
     private double amount;
     private int accountId;
     private AccountType destinationAccountType;
+
+    public TransactionDbModel(int id, String date, String time, TransactionType transactionType, double amount,
+            int accountId, AccountType destinationAccountType) {
+        this.id = id;
+        this.date = date;
+        this.time = time;
+        this.transactionType = transactionType;
+        this.amount = amount;
+        this.accountId = accountId;
+        this.destinationAccountType = destinationAccountType;
+    }
 
     public TransactionDbModel(String date, String time, TransactionType transactionType, double amount, int accountId, AccountType destinationAccountType) {
         this.date = date;
@@ -66,5 +78,13 @@ public class TransactionDbModel {
 
     public void setDestinationAccountType(AccountType destinationAccountType) {
         this.destinationAccountType = destinationAccountType;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }
