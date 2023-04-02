@@ -1,19 +1,17 @@
 package com.semillero.controllers.models.core;
 
-import java.sql.Time;
-import java.util.Date;
-
+import com.semillero.application.contracts.DTO.parameters.AccountType;
 import com.semillero.application.contracts.DTO.parameters.TransactionType;
 
 public class TransactionModel {
-    private Date date;
-    private Time time;
+    private String date;
+    private String time;
     private TransactionType transactionType;
     private double amount;
-    private String accountId;
-    private String destinationAccountType;
+    private int accountId;
+    private AccountType destinationAccountType;
 
-    public TransactionModel(Date date, Time time, TransactionType transactionType, double amount, String accountId, String destinationAccountType) {
+    public TransactionModel(String date, String time, TransactionType transactionType, double amount, int accountId, AccountType destinationAccountType) {
         this.date = date;
         this.time = time;
         this.transactionType = transactionType;
@@ -22,19 +20,19 @@ public class TransactionModel {
         this.destinationAccountType = destinationAccountType;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
-    public Time getTime() {
+    public String getTime() {
         return time;
     }
 
-    public void setTime(Time time) {
+    public void setTime(String time) {
         this.time = time;
     }
 
@@ -54,19 +52,19 @@ public class TransactionModel {
         this.amount = amount;
     }
 
-    public String getAccountId() {
+    public int getAccountId() {
         return accountId;
     }
 
-    public void setAccountId(String accountId) {
+    public void setAccountId(int accountId) {
         this.accountId = accountId;
     }
 
-    public String getDestinationAccountType() {
+    public AccountType getDestinationAccountType() {
         return destinationAccountType;
     }
 
-    public void setDestinationAccountType(String destinationAccountType) {
+    public void setDestinationAccountType(AccountType destinationAccountType) {
         this.destinationAccountType = destinationAccountType;
     }
 }

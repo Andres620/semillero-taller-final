@@ -5,10 +5,10 @@ import com.semillero.application.contracts.DTO.parameters.AccountType;
 public abstract class BankAccountModel {
     private String accountNumber;
 	private float balance;
-	private String owner;
+	private int owner;
     private AccountType type;
     
-    public BankAccountModel(String accountNumber, float balance, AccountType type, String owner) {
+    public BankAccountModel(String accountNumber, float balance, AccountType type, int owner) {
         this.accountNumber = accountNumber;
         this.balance = balance;
         this.type = type;
@@ -31,11 +31,11 @@ public abstract class BankAccountModel {
         this.balance = balance;
     }
     
-    public String getOwner() {
+    public int getOwner() {
         return owner;
     }
     
-    public void setOwner(String owner) {
+    public void setOwner(int owner) {
         this.owner = owner;
     }
     

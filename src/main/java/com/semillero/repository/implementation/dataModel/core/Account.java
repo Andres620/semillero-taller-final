@@ -3,10 +3,10 @@ package com.semillero.repository.implementation.dataModel.core;
 public class Account{ 
     private String accountNumber;
 	private float balance;
-	private String owner;
+	private int owner;
     private String type;
 
-    public Account(String accountNumber, float balance, String type, String owner) {
+    public Account(String accountNumber, float balance, String type, int owner) {
         this.accountNumber = accountNumber;
         this.balance = balance;
         this.type = type;
@@ -29,11 +29,11 @@ public class Account{
         this.balance = balance;
     }
     
-    public String getOwner() {
+    public int getOwner() {
         return owner;
     }
     
-    public void setOwner(String owner) {
+    public void setOwner(int owner) {
         this.owner = owner;
     }
     

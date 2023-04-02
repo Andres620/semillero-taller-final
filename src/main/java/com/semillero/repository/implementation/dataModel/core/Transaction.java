@@ -1,17 +1,14 @@
 package com.semillero.repository.implementation.dataModel.core;
 
-import java.sql.Time;
-import java.util.Date;
-
 public class Transaction {
-    private Date date;
-    private Time time;
+    private String date;
+    private String time;
     private String transactionType;
     private double amount;
-    private String accountId;
+    private int accountId;
     private String destinationAccountType;
 
-    public Transaction(Date date, Time time, String transactionType, double amount, String accountId, String destinationAccountType) {
+    public Transaction(String date, String time, String transactionType, double amount, int accountId, String destinationAccountType) {
         this.date = date;
         this.time = time;
         this.transactionType = transactionType;
@@ -20,19 +17,19 @@ public class Transaction {
         this.destinationAccountType = destinationAccountType;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
-    public Time getTime() {
+    public String getTime() {
         return time;
     }
 
-    public void setTime(Time time) {
+    public void setTime(String time) {
         this.time = time;
     }
 
@@ -52,11 +49,11 @@ public class Transaction {
         this.amount = amount;
     }
 
-    public String getAccountId() {
+    public int getAccountId() {
         return accountId;
     }
 
-    public void setAccountId(String accountId) {
+    public void setAccountId(int accountId) {
         this.accountId = accountId;
     }
 

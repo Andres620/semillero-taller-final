@@ -8,13 +8,13 @@ public class CheckingAccountDTO extends BankAccountDTO{
     public static final double TRANSFER_FEE_PERCENTAGE = 0.02;
     private int savingsTransfersCount;
     
-    public CheckingAccountDTO(String accountNumber, float balance, String owner, AccountType type, int withdrawalCount,
+    public CheckingAccountDTO(String accountNumber, float balance, int owner, AccountType type, int withdrawalCount,
             int savingsTransfersCount) {
         super(accountNumber, balance, owner, type, withdrawalCount);
         this.savingsTransfersCount = savingsTransfersCount;
     }
 
-    public CheckingAccountDTO(String accountNumber, float balance, AccountType type, String owner) {
+    public CheckingAccountDTO(String accountNumber, float balance, AccountType type, int owner) {
         super(accountNumber, balance, type, owner);
         this.savingsTransfersCount= 0;
     }

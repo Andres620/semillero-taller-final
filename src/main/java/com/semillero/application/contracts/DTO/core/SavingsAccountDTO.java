@@ -12,13 +12,13 @@ public class SavingsAccountDTO extends BankAccountDTO{
     private int numDeposits;
 
     
-    public SavingsAccountDTO(String accountNumber, float balance, String owner, AccountType type, int withdrawalCount,
+    public SavingsAccountDTO(String accountNumber, float balance, int owner, AccountType type, int withdrawalCount,
     int numDeposits) {
         super(accountNumber, balance, owner, type, withdrawalCount);
         this.numDeposits = numDeposits;
     }
     
-    public SavingsAccountDTO(String accountNumber, float balance, AccountType type, String owner) {
+    public SavingsAccountDTO(String accountNumber, float balance, AccountType type, int owner) {
         super(accountNumber, balance, type, owner);
         this.numDeposits = 0;
     }
